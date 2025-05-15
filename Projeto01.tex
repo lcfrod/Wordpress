@@ -1,0 +1,327 @@
+%%  --------------------------------------------------
+%%  Project 01 - WordPress AWS Migration
+%%  Author : Luiz Carlos Rodrigues ( lcfrod@hotmail.com )
+%%  GitHub : 
+%%  Date :  May-2025
+%%  --------------------------------------------------
+\documentclass[12pt,a4paper,x11names]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[pdftex]{graphicx}              % usamos arquivos pdf/png como figuras
+\usepackage{epstopdf}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyhdr}
+\usepackage[alf,abnt-show-options=no]{abntex2cite}
+\usepackage[top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage[table]{pstricks}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{subfigure}
+\usepackage{gensymb}
+\usepackage{rotating}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{watermark} 
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl} % Para usar a cor nas linhas
+\usepackage[T1]{fontenc} % Para garantir suporte a caracteres especiais
+\usepackage{lscape}
+% Renew Commands
+\addto\captionsenglish{%
+\renewcommand{\bibname}{References}
+\renewcommand{\listoffiguresname}{List of Figures}
+\renewcommand{\listoftablename}{List of Tables}
+\renewcommand{\chaptername}{Chapter}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossário - Define a lista de siglas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[style=long,number=none]{glossary}
+\makeglossary
+\glossary{name={AVC}, description={Acidente Vascular Cerebral}}
+\glossary{name={AVR}, description={Atrial Venular Ratio}}
+\glossary{name={CHT}, description={Circular Hough Transform}}
+ 
+%%---------------------------------------------------------
+\usetikzlibrary{automata}
+\definecolor{Blue}{rgb}{0.3,0.3,0.9}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.gates.logic.US,trees,positioning,arrows}
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols}
+
+\graphicspath{{./figuras/}}        % path das figuras
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\newcommand{\todo}{\rule{0.5em}{1ex}}
+\newcommand{\todobf}[1]{{\rule{0.5em}{1ex}\textbf{ #1}}}
+\newcommand{\mylatex}{\textrm{\LaTeX}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\definecolor{marron}{cmyk}{0,0.87,0.68,0.32}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin Document 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%% Header
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+\fancyhead[L]{\includegraphics[scale=0.5]{LogoAwsPro.jpg}}  % Logo à esquerda
+\fancyhead[R]{\textbf{\large \textcolor{orange}{Cloud Treinamentos}} }  % Logo à esquerda
+\fancyfoot[L]{Edited in \mylatex \hspace{0.1cm}  on \today\ at \currenttime } 
+\fancyfoot[R]{\textbf{Página : }\thepage \ of \pageref{LastPage}} % Número da página à direita
+
+%% ==========================
+%% First Page
+%% =========================
+\begin{center}
+~\\
+\vskip 3.0cm
+\large  \textbf{Programa de Especialização em AWS 2.0}\\
+\large  \textbf{Mentoria Arquiteto AWS Pro}\\
+\vskip 2.0cm
+\textbf{\large Módulo de Projetos Individuais com Acompanhamento}\\
+\vskip 3.5cm
+\setlength{\baselineskip}{1.5\baselineskip}
+\textbf{\large  PROJETO 01 - WordPress Migration}\\
+\vskip 4.0cm
+\textbf{\large Arquiteto : Luiz Carlos Ferreira Rodrigues}\\
+\textbf{\large Supervisão  : Leandro Porciúncula}\\
+\end{center}
+\vskip 2.5 cm
+\begin{center}
+São Paulo\\
+2025\\
+\end{center}
+\newpage
+
+%% ==========================
+%% Second Page
+%% =========================
+\begin{center}
+~\\
+\vskip 3.0cm
+\large  \textbf{Programa de Especialização em AWS 2.0}\\
+\large  \textbf{Mentoria Arquiteto AWS Pro}\\
+\vskip 2.0cm
+\textbf{\large Módulo de Projetos Individuais com Acompanhamento}\\
+\vskip 3.5cm
+\setlength{\baselineskip}{1.5\baselineskip}
+\textbf{\large  PROJETO 01 - WordPress Migration}\\
+\vskip 3.5cm
+\end{center}
+\hfill{\vbox{\hsize=5.0cm\noindent\strut
+Este documento faz parte das\break
+atividades técnicas do Módulo\break
+de Projetos Individuais\break
+com Acompanhamento no  Curso\break
+de Especialização em AWS 2.0, ministrado pela  Cloud\break
+Treinamentos, como requisito\break
+parcial à obtenção do título\break
+de Especialista em Cloud AWS.\break
+}\\
+\strut}
+\vskip 1.5 cm
+\begin{center}
+São Paulo\\
+2025\\
+\end{center}
+
+%% ==========================
+%% Acceptance Page
+%% =========================
+\newpage
+\setcounter{page}{2}
+\normalsize
+
+\begin{center}
+~\\
+\large  \textbf{Project : WordPress Migration}\\
+\vskip 1.0cm
+\textbf{\large History of the Documentation }\\
+\vskip 1.0cm
+\end{center}
+
+\renewcommand{\arraystretch}{1.5} % Ajusta o espaçamento entre as linhas
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+ 
+\hline
+\rowcolor[gray]{0.9}  % Define a cor da primeira linha
+\textbf{Version}          & \textbf{Date}  & \textbf{Author}   & \textbf{Description}      & \textbf{Approved by}    \\ \hline
+Draft   & Arquiteto      & April-2025       &Luiz Carlos Rodrigues &  Document creation \\ \hline
+        &       &                 &                    &                    \\ \hline
+        &       &                 &                    &                    \\ \hline
+\end{tabular}
+\end{center}
+
+
+\begin{center} 
+~\\
+~\\
+\large  \textbf{Project Participants}\\
+\end{center} 
+ 
+\renewcommand{\arraystretch}{1.5} % Ajusta o espaçamento entre as linhas
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+
+\hline
+\rowcolor[gray]{0.9}  % Define a cor da primeira linha
+\textbf{Name}          & \textbf{Role}  & \textbf{Date}   & \textbf{mail}      & \textbf{Phone}    \\ \hline
+Luiz Carlos Rodrigues  & Arquiteto      & April-2025       & lcfrod@hotmail.com &  (11 ) 98548-9032 \\ \hline
+Leandro Porciuncula    & Supervisor     &                 &                    &                    \\ \hline
+Cláudio Vieira         & AWS Guru       &                 &                    &                    \\ \hline
+
+
+\end{tabular}
+\end{center}
+%% ---------------------------------------
+%%    Confidentiality Agreement 
+%% ---------------------------------------
+\newpage
+\renewcommand{\baselinestretch}{1.0}
+\normalsize
+~\\
+\section*{\centering Confidentiality Agreement}
+\noindent
+
+This Confidentiality Agreement ("Agreement") is made between the parties involved in the migration of the Blog Platform ("Project01") to the Amazon Web Services ("AWS") Cloud Environment.
+\begin{enumerate}
+  \item \textbf{Purpose} The parties acknowledge that during the execution of the Project, it will be necessary to disclose confidential information including, but not limited to, technical specifications, system architecture, user data, operational procedures, and business strategies ("Confidential Information").
+  \item \textbf{Obligations} Each party agrees to:
+  \begin{itemize}
+     \item Use the Confidential Information solely for the purposes of the Project.
+     \item Limit access to Confidential Information to employees or contractors who need to know it for the Project and are bound by confidentiality obligations.
+     \item Take reasonable measures to protect the Confidential Information against unauthorized disclosure or use.
+     \item Not disclose any Confidential Information to third parties without prior written consent
+  \end{itemize}
+  
+  
+  \item \textbf{Exclusions} Confidential Information does not include information that:
+   \begin{itemize}
+     \item Becomes publicly available through no fault of the receiving party.
+     \item Is independently developed by the receiving party without use of or reference to the disclosing partys Confidential Information.
+     \item Take reasonable measures to protect the Confidential Information against unauthorized disclosure or use.
+     \item Is lawfully received from a third party without restriction.
+  \end{itemize}
+  \item \textbf{Term} The confidentiality obligations shall remain in effect for a period of five (5) years from the date of disclosure of the Confidential Information, or until such time as the information no longer qualifies as Confidential Information.
+  \item \textbf{Return or Destruction of Information} Upon conclusion or termination of the Project, or upon written request by the disclosing party, the receiving party shall promptly return or destroy all materials containing Confidential Information.
+  \item \textbf{Governing Law} This Agreement shall be governed by and construed in accordance with the laws applicable in the jurisdiction mutually agreed upon by the parties.
+  \item \textbf{General Provisions} Nothing in this Agreement grants any rights, by license or otherwise, to the Confidential Information, except as expressly set forth herein.
+  
+  
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Project Overview
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Refazer com base no anterior
+\newpage
+~\\
+%\renewcommand{\baselinestretch}{1.5}
+\normalsize
+\section*{\centering Project Overview}
+\noindent
+The 
+Company XYZK currently hosts its WordPress blog on HostGator, but it has been facing several critical issues that are negatively impacting performance and user experience. 
+The Company expects, within a short period, an estimated increase in traffic to 150,000 daily visits, totaling approximately 4.5 million monthly visits.\\
+Currently the Company recurrently faces of following problems:
+
+\begin{enumerate}
+  \item \textbf{Performance Issues:} The website suffers from slow loading times, especially during traffic peaks, harming both visitor experience and SEO performance. 
+  \item \textbf{Frequent Downtime:} The blog experiences regular outages, mainly during periods of high traffic volume, leading to user dissatisfaction and potential loss of engagement.
+  
+  \item \textbf{Security Threats:} The platform is a frequent target of cyberattacks, including brute force attacks, SQL injections, and DDoS attacks, raising significant concerns about data security and platform stability.
+  \item \textbf{Scalability Limitations:} he current hosting environment lacks the necessary infrastructure to support the anticipated growth in traffic. The number of visitors has been steadily increasing over the past months, and the system is not adequately prepared to handle future demand.   
+\end{enumerate}
+
+To solve the aforementioned problems, the Company has turned to our services to prevent or mitigate these threats to its business and is requesting that we migrate its Wordpress Blog to AWS cloud services.
+
+The advantages, strategies and parameters for the migration are discussed in this document.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LISTA DE FIGURAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%~\\
+%\renewcommand\listfigurename{LIST OF FIGURES}
+%\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LISTA DE TABELAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%~\\
+%\renewcommand{\listtablename}{LIST OF TABLES}
+%\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LISTA DE SIGLAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%~\\
+%\renewcommand{\glossaryname}{LIST OF ACRONYMS}
+%\printglossary
+
+\newpage
+~\\
+\tableofcontents
+
+\newpage
+%\renewcommand{\baselinestretch}{1.5}
+\normalsize
+
+
+% INTRODUÇÃO
+\input{chap1/Introduction.tex}
+
+% REFERENCIAL TEÓRICO
+\input{chap2/Services_Reference.tex}
+
+%MÉTODOS MATEMÁTICOS
+%\input{chap3/Metodos.tex}
+
+% Project Implementation
+%\input{chap5/Project_Implementation.tex}
+
+%TESTES E RESULTADOS
+\input{chap6/Testes_Resultados.tex}
+
+%CONSIDERAÇÕES FINAIS
+\input{chap7/Considera.tex}
+
+
+\clearpage
+%% =====================
+% Bibliography
+%% =====================
+ 
+~//
+\renewcommand\refname{REFERENCES}
+%\section{REFERENCES}
+\bibliography{biblio/Referencias}
+%\addcontentsline{toc}{section}{ BIBLIOGRAFY}
+%\bibliographystyle{abnt-alf}
+%%% APENDICE 1 - Drive
+%\input{chap6/Anexo01_DRIVE.tex}
+
+\end{document}
